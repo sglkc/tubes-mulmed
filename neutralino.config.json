@@ -2,7 +2,7 @@
   "applicationId": "js.neutralinojs.neu",
   "version": "1.0.0",
   "defaultMode": "window",
-  "documentRoot": "/src/dist/",
+  "documentRoot": "/app/dist/",
   "url": "/",
   "enableServer": true,
   "enableNativeAPI": true,
@@ -17,18 +17,18 @@
       "height": 500,
       "minWidth": 400,
       "minHeight": 200,
-      "icon": "/src/dist/icon.png"
+      "icon": "/app/dist/icon.png"
     }
   },
   "cli": {
     "binaryName": "neu",
-    "resourcesPath": "/src/dist/",
+    "resourcesPath": "/app/dist/",
     "extensionsPath": "/extensions/",
     "binaryVersion": "5.5.0",
     "frontendLibrary": {
-      "patchFile": "/src/index.html",
+      "patchFile": "/app/index.html",
       "devUrl": "http://localhost:5173",
-      "projectPath": "/src",
+      "projectPath": "/app",
       "initCommand": "pnpm i",
       "devCommand": "pnpm dev",
       "buildCommand": "pnpm build"
