@@ -7,7 +7,7 @@
     "neu": "neu",
     "run": "neu run",
     "start": "neu run",
-    "dev": "neu run",
+    "dev": "neu run -- --window-enable-inspector",
     "build": "neu build",
     "update": "neu update"
   }

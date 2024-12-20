@@ -14,9 +14,9 @@
     "window": {
       "title": "Hello Neutralinojs",
       "width": 800,
-      "height": 500,
-      "minWidth": 400,
-      "minHeight": 200,
+      "height": 600,
+      "minWidth": 800,
+      "minHeight": 600,
       "icon": "/app/dist/icon.png"
     }
   },
@@ -27,7 +27,7 @@
     "binaryVersion": "5.5.0",
     "frontendLibrary": {
       "patchFile": "/app/index.html",
-      "devUrl": "http://localhost:5173",
+      "devUrl": "http://localhost:5177",
       "projectPath": "/app",
       "initCommand": "pnpm i",
       "devCommand": "pnpm dev",
