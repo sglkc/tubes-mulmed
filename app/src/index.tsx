@@ -1,27 +1,21 @@
-import { filesystem, init } from '@neutralinojs/lib'
+import { init } from '@neutralinojs/lib'
 import { render } from 'preact'
 import { LocationProvider, Router, Route } from 'preact-iso'
-import { useEffect } from 'preact/hooks'
-
-import { Header } from './components/Header.jsx'
-import { Home } from './pages/Home/index.jsx'
-import { NotFound } from './pages/_404.jsx'
-import 'virtual:uno.css'
+import HomeScreen from './pages/Home'
 import '@unocss/reset/tailwind-compat.css'
-import './style.css'
+import 'virtual:uno.css'
 
 export function App() {
-
-  useEffect(() => {
-    filesystem.readDirectory('./').then(console.log).catch(console.error)
-  }, [])
+  const NotFound = () => {
+    location.replace('/')
+    return false
+  }
 
 	return (
 		<LocationProvider>
-			<Header />
-			<main class="bg-red p-12">
+			<main class="fixed inset-0 bg-dark-900 text-light">
 				<Router>
-					<Route path="/" component={Home} />
+					<Route path="/" component={HomeScreen} />
 					<Route default component={NotFound} />
 				</Router>
 			</main>
