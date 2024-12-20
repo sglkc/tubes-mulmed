@@ -4,7 +4,7 @@ import { LocationProvider, Router, Route } from 'preact-iso'
 import HomeScreen from './pages/Home'
 import CreditsScreen from './pages/Credits'
 import PlayScreen from './pages/Play'
-import '@unocss/reset/tailwind-compat.css'
+import '@unocss/reset/tailwind.css'
 import 'virtual:uno.css'
 
 export function App() {
