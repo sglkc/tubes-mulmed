@@ -4,7 +4,11 @@ function Link(props: PropsWithChildren<{ class?: string, href: string }>) {
   return (
     <a
       {...props}
-      class={`bg-dark-800 p-4 b-1 b-light align-center ${props.class}`}
+      class={
+        'bg-dark-800 p-4 b-1 b-light align-center hover:bg-dark-100 '
+          + props.class
+      }
+      draggable={false}
     />
   )
 }
@@ -20,9 +24,8 @@ export default function HomeScreen() {
         <ul class="grid gap-4 text-3xl">
           <Link href="/">Start</Link>
           <Link class="opacity-50" href="/">Continue</Link>
-          <Link href="/">Credits</Link>
+          <Link href="/credits">Credits</Link>
         </ul>
-        <div></div>
       </section>
       <footer class="mt-auto grid grid-cols-3 justify-between items-end text-sm">
         <p class="text-left">Kelompok 3</p>
