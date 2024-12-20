@@ -7,7 +7,8 @@
   "enableServer": true,
   "enableNativeAPI": true,
   "nativeAllowList": [
-    "app.*"
+    "app.*",
+    "filesystem.readDirectory"
   ],
   "modes": {
     "window": {
@@ -23,6 +24,14 @@
     "binaryName": "neu",
     "resourcesPath": "/src/dist/",
     "extensionsPath": "/extensions/",
-    "binaryVersion": "5.5.0"
+    "binaryVersion": "5.5.0",
+    "frontendLibrary": {
+      "patchFile": "/src/index.html",
+      "devUrl": "http://localhost:5173",
+      "projectPath": "/src",
+      "initCommand": "pnpm i",
+      "devCommand": "pnpm dev",
+      "buildCommand": "pnpm build"
+    }
   }
 }

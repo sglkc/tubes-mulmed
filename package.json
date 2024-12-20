@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "devDependencies": {
+    "@neutralinojs/neu": "^11.3.0"
+  },
+  "scripts": {
+    "neu": "neu",
+    "run": "neu run",
+    "start": "neu run",
+    "dev": "neu run",
+    "build": "neu build",
+    "update": "neu update"
+  }
+}

@@ -1,2 +1,5 @@
+.tmp
+*.log
 bin
 dist
+node_modules
