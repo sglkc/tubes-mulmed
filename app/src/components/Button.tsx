@@ -9,7 +9,7 @@ type ButtonProps = PropsWithChildren<{
 
 export default function Button(props: ButtonProps) {
   const location = useLocation()
-  const handleClick = props.href ? () => location.route(props.href) : props.onClick
+  const handleClick = props.href ? () => location.route(props.href, true) : props.onClick
 
   return (
     <button

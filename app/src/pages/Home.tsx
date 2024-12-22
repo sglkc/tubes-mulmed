@@ -1,16 +1,37 @@
+import { useRef } from 'preact/hooks'
+import { useLocation } from 'preact-iso'
 import Button from '../components/Button'
 
 export default function HomeScreen() {
+  const location = useLocation()
+  const overlay = useRef<HTMLDivElement>(null)
+
+  const startGame = () => {
+    if (overlay.current.getAnimations().length) return
+
+    overlay.current.classList.remove('hidden')
+    overlay.current
+      .animate(
+        [ { opacity: 0 }, { opacity: 1 } ],
+        { duration: 3000, fill: 'forwards' }
+      )
+      .addEventListener('finish', () => location.route('/play', true))
+  }
+
   return (
-    <div class="p-16 grid gap-8 h-full">
+    <div class="relative p-16 grid gap-8 h-full animate-mode-backwards animate-fade-in animate-delay-0.5s animate-1s">
+      <div ref={overlay} class="z-10 fixed inset-0 bg-black hidden" />
+      <div class="absolute inset-0 bg-white/20 backdrop-blur-xl -z-1">
+        <video src="/home-slow.mp4" volume="0" autoplay loop muted />
+      </div>
       <header class="max-h-16">
         <h1 class="text-8xl fw-bold">Location</h1>
         <h2 class="text-neutral italic">Can you find him?</h2>
       </header>
       <section class="grid grid-cols-3 gap-8">
         <ul class="grid gap-4 text-3xl">
-          <Button href="/play">Start</Button>
-          <Button class="opacity-50" href="/">Continue</Button>
+          <Button onClick={startGame}>Start</Button>
+          <Button class="opacity-50">Continue</Button>
           <Button href="/credits">Credits</Button>
         </ul>
       </section>

@@ -1,8 +1,10 @@
+import Button from "../components/Button";
+
 export default function CreditsScreen() {
   return (
-		<div class="p-16 grid grid-cols-3 gap-8 h-full">
-      <a href="/">Kembali</a>
-      <table class="col-span-2">
+		<div class="relative p-16 flex flex-col gap-4 h-full items-start justify-end animate-mode-backwards animate-fade-in animate-1s">
+      <img class="absolute inset-0 -z-1 opacity-50" src="/credits.webp" />
+      <table class="text-center">
         <thead>
           <tr>
             <th>NIM</th>
@@ -13,7 +15,7 @@ export default function CreditsScreen() {
         <tbody>
           <tr>
             <td>152022088</td>
-            <td>M. Praditia Haikal Febriansyah</td>
+            <td class="px-4">M. Praditia Haikal Febriansyah</td>
             <td>Tim Kamera dan Visual</td>
           </tr>
           <tr>
@@ -53,6 +55,7 @@ export default function CreditsScreen() {
           </tr>
         </tbody>
       </table>
+      <Button href="/">Kembali</Button>
     </div>
   )
 }

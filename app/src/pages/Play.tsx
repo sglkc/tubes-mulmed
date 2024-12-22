@@ -9,10 +9,12 @@ export default function PlayScreen() {
 
   const togglePauseMenu = () => {
     setPaused((state) => {
-      if (state) {
-        video.current.play()
+      const v = video.current
+
+      if (state && v.currentTime !== v.duration) {
+        v.play()
       } else {
-        video.current.pause()
+        v.pause()
       }
 
       return !state
@@ -24,9 +26,7 @@ export default function PlayScreen() {
   }
 
   const onChangeVolume = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(video.current.volume)
     video.current.volume = Number(e.currentTarget.value)
-    console.log(video.current.volume)
   }
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function PlayScreen() {
       <video
         ref={video}
         class="w-full h-full"
-        src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+        src="/scenes/1.mp4"
         autoplay
       />
       { showDialog &&
