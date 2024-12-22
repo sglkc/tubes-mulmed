@@ -2,7 +2,7 @@ import Button from "../components/Button";
 
 export default function CreditsScreen() {
   return (
-		<div class="relative p-16 flex flex-col gap-4 h-full items-start justify-end animate-mode-backwards animate-fade-in animate-1s">
+		<div class="relative p-16 flex flex-col gap-4 h-full items-start justify-end animate-mode-backwards animate-fade-in animate-0.5s">
       <img class="absolute inset-0 -z-1 opacity-50" src="/credits.webp" />
       <table class="text-center">
         <thead>
