@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'preact/hooks'
 import { ChangeEvent } from 'preact/compat'
+import Neutralino from '@neutralinojs/lib'
 import Button from '../components/Button'
 
 export default function PlayScreen() {
@@ -29,6 +30,18 @@ export default function PlayScreen() {
     video.current.volume = Number(e.currentTarget.value)
   }
 
+  const toggleFullscreen = async () => {
+    try {
+      if (await Neutralino.window.isFullScreen()) {
+        await Neutralino.window.exitFullScreen()
+      } else {
+        await Neutralino.window.setFullScreen()
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   useEffect(() => {
     document.addEventListener('keydown', escapeListener)
     return () => document.removeEventListener('keydown', escapeListener)
@@ -37,7 +50,7 @@ export default function PlayScreen() {
   return (
     <div class="relative">
       <button
-        class="m-4 p-4 absolute right-0 rotate-90 fw-bold text-4xl text-light rounded-full hover:bg-light/10"
+        class="m-4 p-4 fixed right-0 rotate-90 fw-bold text-4xl text-light rounded-full hover:bg-light/10 z-10"
         onClick={togglePauseMenu}
         style={ isPaused && { display: 'none' } }
       >
@@ -59,7 +72,7 @@ export default function PlayScreen() {
         </section>
       }
       <section
-        class="absolute inset-0 bg-black/20 text-2xl text-center"
+        class="absolute inset-0 bg-black/20 text-2xl text-center z-10"
         style={ !isPaused && { display: 'none' } }
       >
         <div class="m-auto h-full flex flex-col gap-8 place-content-center max-w-128">
@@ -81,6 +94,7 @@ export default function PlayScreen() {
               <p>100</p>
             </div>
           </div>
+          <Button onClick={toggleFullscreen}>TOGGLE FULLSCREEN</Button>
           <Button href="/">EXIT</Button>
         </div>
       </section>

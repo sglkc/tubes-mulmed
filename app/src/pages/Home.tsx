@@ -1,5 +1,6 @@
 import { useRef } from 'preact/hooks'
 import { useLocation } from 'preact-iso'
+import Neutralino from '@neutralinojs/lib'
 import Button from '../components/Button'
 
 export default function HomeScreen() {
@@ -16,6 +17,10 @@ export default function HomeScreen() {
         { duration: 3000, fill: 'forwards' }
       )
       .addEventListener('finish', () => location.route('/play', true))
+  }
+
+  const quitGame = () => {
+    Neutralino.app.exit()
   }
 
   return (
@@ -38,6 +43,7 @@ export default function HomeScreen() {
           <Button onClick={startGame}>Start</Button>
           <Button class="opacity-50">Continue</Button>
           <Button href="/credits">Credits</Button>
+          <Button onClick={quitGame}>Quit</Button>
         </ul>
       </section>
       <footer class="mt-auto grid grid-cols-3 justify-between items-end text-sm">
