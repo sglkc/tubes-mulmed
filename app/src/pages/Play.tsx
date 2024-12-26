@@ -5,13 +5,15 @@ import Button from '../components/Button'
 import { alur, Alur, AlurNames } from '../alur'
 
 export default function PlayScreen() {
+  const savedAlurName = localStorage.getItem('saved-alur-name')
   const [showDialog, setShowDialog] = useState(false)
   const [isPaused, setPaused] = useState(false)
-  const [currentAlur, setAlur] = useState<Alur>(alur.intro)
+  const [currentAlur, setAlur] = useState<Alur>(alur[savedAlurName || 'intro'])
 
   const setCurrentAlur = (name: AlurNames) => useCallback(() => {
     setAlur(() => alur[name])
     setShowDialog(() => false)
+    localStorage.setItem('saved-alur-name', name)
   }, [name])
 
   const video = useRef<HTMLVideoElement>(null)
@@ -51,7 +53,8 @@ export default function PlayScreen() {
   }
 
   const onVideoProgress = () => {
-    if ((video.current.duration - video.current.currentTime) > 5) return
+    const v = video.current
+    if (v.readyState < 3 || (v.duration - v.currentTime) > 5) return
     setShowDialog(true)
   }
 

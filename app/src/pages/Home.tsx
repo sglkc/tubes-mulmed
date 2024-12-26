@@ -7,8 +7,9 @@ export default function HomeScreen() {
   const location = useLocation()
   const overlay = useRef<HTMLDivElement>(null)
 
-  const startGame = () => {
+  const startGame = (restart = false) => () => {
     if (overlay.current.getAnimations().length) return
+    if (restart) localStorage.removeItem('saved-alur-name')
 
     overlay.current.classList.remove('hidden')
     overlay.current
@@ -40,8 +41,8 @@ export default function HomeScreen() {
       </header>
       <section class="grid grid-cols-3 gap-8">
         <ul class="grid gap-4 text-3xl">
-          <Button onClick={startGame}>Start</Button>
-          <Button class="opacity-50">Continue</Button>
+          <Button onClick={startGame(true)}>Start</Button>
+          <Button onClick={startGame()}>Continue</Button>
           <Button href="/credits">Credits</Button>
           <Button onClick={quitGame}>Quit</Button>
         </ul>
