@@ -1,11 +1,19 @@
-import { useEffect, useRef, useState } from 'preact/hooks'
+import { useCallback, useEffect, useRef, useState } from 'preact/hooks'
 import { ChangeEvent } from 'preact/compat'
 import Neutralino from '@neutralinojs/lib'
 import Button from '../components/Button'
+import { alur, Alur, AlurNames } from '../alur'
 
 export default function PlayScreen() {
   const [showDialog, setShowDialog] = useState(false)
   const [isPaused, setPaused] = useState(false)
+  const [currentAlur, setAlur] = useState<Alur>(alur.intro)
+
+  const setCurrentAlur = (name: AlurNames) => useCallback(() => {
+    setAlur(() => alur[name])
+    setShowDialog(() => false)
+  }, [name])
+
   const video = useRef<HTMLVideoElement>(null)
 
   const togglePauseMenu = () => {
@@ -42,9 +50,19 @@ export default function PlayScreen() {
     }
   }
 
+  const onVideoProgress = () => {
+    if ((video.current.duration - video.current.currentTime) > 5) return
+    setShowDialog(true)
+  }
+
   useEffect(() => {
     document.addEventListener('keydown', escapeListener)
-    return () => document.removeEventListener('keydown', escapeListener)
+    video.current.addEventListener('timeupdate', onVideoProgress)
+
+    return () => {
+      document.removeEventListener('keydown', escapeListener)
+      video.current.removeEventListener('timeupdate', onVideoProgress)
+    }
   }, [])
 
   return (
@@ -59,16 +77,24 @@ export default function PlayScreen() {
       <video
         ref={video}
         class="w-full h-full"
-        src="/scenes/1.mp4"
+        src={'/scenes/' + currentAlur.video}
         autoplay
+        controls
       />
       { showDialog &&
         <section
           class="absolute inset-0 m-auto flex flex-col gap-8 max-w-128 text-2xl text-center justify-center"
         >
-          <Button href="/scene/2">PILIHAN 1</Button>
-          <Button href="/scene/2">PILIHAN 1</Button>
-          <Button href="/scene/2">PILIHAN 1</Button>
+          { 'choices' in currentAlur && currentAlur.choices.map((choice) =>
+            <Button onClick={setCurrentAlur(choice.alur)}>{ choice.text }</Button>
+          )}
+          { 'end' in currentAlur &&
+            <>
+              <h1>{ currentAlur.end.toUpperCase() }</h1>
+              <p>ENDING</p>
+              <Button href="/">Kembali ke menu</Button>
+            </>
+          }
         </section>
       }
       <section
