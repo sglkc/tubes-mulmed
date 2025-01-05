@@ -26,8 +26,8 @@ export const alur: Record<AlurNames, Alur> = {
     video: 'intro.mp4',
     choices: [
       { alur: 'irigasi', text: 'Irigasi' },
-      { alur: 'perum', text: 'Perum' },
-      { alur: 'pojokan', text: 'Pojokan' },
+      { alur: 'perum', text: 'Perumahan' },
+      { alur: 'pojokan', text: 'Area Pojokan' },
     ]
   },
   'irigasi': {
@@ -52,8 +52,7 @@ export const alur: Record<AlurNames, Alur> = {
     video: 'perum.mp4',
     choices: [
       { alur: 'irigasi', text: 'Irigasi' },
-      { alur: 'perum', text: 'Perum' },
-      { alur: 'pojokan', text: 'Pojokan' },
+      { alur: 'pojokan', text: 'Area Pojokan' },
     ]
   },
   'pojokan': {
